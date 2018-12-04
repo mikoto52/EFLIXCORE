@@ -36,6 +36,8 @@ namespace Core {
 
 		public function generateTemplateCache($cacheKey = NULL, $buff, $mtime, $css, $js) {
 			if(!$cacheKey) return;
+			// If Config not loaded, then NOT use Cachenhandler
+			if(!$this->cacheStorage) return;
 
 			$cacheDir = $this->cacheStorage . '/template/';
 			if(!is_dir($cacheDir))

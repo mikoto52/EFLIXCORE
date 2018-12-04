@@ -157,7 +157,7 @@ namespace Core {
 		public function initDatabase() {
 			
 			// load db config
-			$dbconf = include_once(_VCPROOT_ . "config/db.config.php");
+			$dbconf = include_once(sprintf('%s/config/db.config.php', self::getPath('appdata')));
 			self::$dbConf = &$dbconf;
 			
 			if(!$dbconf['prefix']) {

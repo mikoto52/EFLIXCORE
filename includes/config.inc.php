@@ -1,28 +1,19 @@
 <?php
 date_default_timezone_set("Asia/Seoul");
 
-if(!defined("__VERSION__")) {
-	define("__VERSION__", "0.3");
-}
-
-if(!defined("__VCP__")) {
-	define("__VCP__", true);
-}
-
-if(!defined("__EFLIX__")) {
-	define("__EFLIX__", __VCP__);
-}
-
-if(!defined("_VCPDEBUG_")) {
-	define("_VCPDEBUG_", true);
-}
-
-if(error_reporting() !== E_ALL & ~E_NOTICE) {
-	ini_set('display_errors', true);
-	error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-}
+$version = '0.4'; // version tag
+$debug = true; // debug mode
 
 if(!defined("__VCPLOADED__")) {
+	if(!defined("__VERSION__")) define("__VERSION__", $version);
+	if(!defined("__VCP__")) define("__VCP__", true);
+	if(!defined("__EFLIX__")) define("__EFLIX__", true);
+	if(!defined("_VCPDEBUG_")) define("_VCPDEBUG_", $debug);
+	if(error_reporting() !== E_ALL & ~E_NOTICE) {
+		ini_set('display_errors', true);
+		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+	}
+	
 	$docroot = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
 	$pathArr = str_replace("\\", "/", __DIR__);
 	$pathArr = str_ireplace(sprintf("%s/", $docroot), "", $pathArr);
@@ -38,6 +29,7 @@ if(!defined("__VCPLOADED__")) {
 	if($vcpPath != '/') $vcpHost .= $vcpPath . '/';
 	$vcpRoot = $_SERVER['DOCUMENT_ROOT'] . '/';
 	if($vcpPath != '/') $vcpRoot .= $vcpPath . '/';
+	
 	// _VCPROOT_ 절대경로
 	if(!defined("_VCPROOT_")) {
 		define("_VCPROOT_", $vcpRoot);
