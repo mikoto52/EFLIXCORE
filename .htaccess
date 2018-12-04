@@ -1,0 +1,10 @@
+RewriteEngine On
+AddType application/x-httpd-php .do
+DirectoryIndex httpHandler.do
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_URI} (/[^.]*|\.)$ [NC]
+RewriteRule .* httpHandler.do [L]

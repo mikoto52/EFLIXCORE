@@ -1,0 +1,21 @@
+@css "style.css"
+@title Kernel::get("message")
+<body id="errorPage" class="nhp">
+    <div id="doc2">
+        <!-- <header class="pop clearfix">
+		    <div class="shadow"></div>
+		    <a href="" class="logo">
+		        <div class="img"></div>
+		    </a>
+		</header> -->
+        <div id="bd" class="main-content">
+            <h1 class="page-title-pma">{{$message}}</h1> 
+			<p>{{$desc}}</p>
+			<p>If you have any questions, please contact to administrators.</p>
+			<p></p>
+			<p>Thank you</p>
+			
+			<a href="/" class="back-btn">Home</a>
+        </div>
+    </div>
+</body>

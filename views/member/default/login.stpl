@@ -1,0 +1,18 @@
+@css "./css/style.css"
+@js "./js/login.js"
+@title "Login"
+<div class="wrapper">
+  <form class="login login-form" data-method="POST" data-action="{{getUrl('member', 'loginProc')}}">
+    <p class="title">로그인</p>
+    <input type="text" name="user_id" placeholder="아이디" autofocus/>
+    <i class="fa fa-user"></i>
+    <input type="password" name="user_password" placeholder="비밀번호" />
+    <i class="fa fa-key"></i>
+    <a href="#">비밀번호를 잊으셨나요?</a>
+    <button id="submit-btn" type="button">
+      <i class="spinner"></i>
+      <span class="state">로그인</span>
+    </button>
+  </form>
+  </p>
+</div>
