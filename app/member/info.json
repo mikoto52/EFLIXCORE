@@ -1,0 +1,14 @@
+{
+	"appid": "teamast.eflix.member",
+	"license": "MIT",
+	"name": "회원",
+	"version": "0.4",
+	"desc": "EFLIX 기본 회원관리 모듈입니다.",
+	"site": "http://www.teamast.io/",
+	"author": [
+		{
+			"name": "LiXCode",
+			"email": "lixcode@teamast.io"
+		}
+	]
+}

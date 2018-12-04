@@ -1,0 +1,57 @@
+{
+	"users": {
+		"columns": [{
+			"name": "user_srl",
+			"data": "number",
+			"length": 255,
+			"unsigned": true,
+			"notnull": true,
+			"description": "",
+			"sequence": true
+		},{
+			"name": "user_id",
+			"data": "varchar",
+			"length": 255,
+			"notnull": false,
+			"default": "" 
+		},{
+			"name": "user_password",
+			"data": "varchar",
+			"length": 255,
+			"notnull": false,
+			"default": "" 
+		},{
+			"name": "user_name",
+			"data": "varchar",
+			"length": 255,
+			"notnull": false,
+			"default": "" 
+		},{
+			"name": "user_email",
+			"data": "varchar",
+			"length": 255,
+			"notnull": false,
+			"default": "" 
+		},{
+			"name": "user_nickname",
+			"data": "varchar",
+			"length": 255,
+			"notnull": false,
+			"default": "" 
+		},{
+			"name": "hash_type",
+			"data": "enum",
+			"value": ["SHA256", "SHA512","SHA1","MD5"],
+			"default": "SHA256" 
+		},{
+			"name": "user_priv",
+			"data": "enum",
+			"value": ["USER", "ADMIN"],
+			"default": "USER" 
+		},{
+			"name": "user_extra",
+			"data": "longtext"
+		}],
+		"index": []
+	}
+}

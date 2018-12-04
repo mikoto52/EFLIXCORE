@@ -1,0 +1,126 @@
+[{
+	"component": "static",
+	"path": "./js/member_form.js"
+},
+{
+	"component": "pageheader",
+	"title": "회원 관리",
+	"desc": "웹 사이트에 대한 설정입니다.",
+	"ul": [
+		"<li><a href='{{getUrl('admin')}}'>관리자</a></li>",
+		"<li><span>회원</span></li>",
+		"<li class='active'><span>회원 관리</span></li>"
+	]
+},
+{
+	"component": "content",
+	"child": [{
+		"component": "form",
+		"action": "",
+		"method": "POST",
+		"child": [{
+			"component": "row",
+			"child": [{
+				"component": "col",
+				"size": [12, 12, 6],
+				"child": [{
+					"component": "fieldset",
+					"title": "회원정보 수정",
+					"child": [{
+						"component": "field",
+						"title": "아이디",
+						"name": "user_id",
+						"desc": "",
+						"type": "text",
+						"value": "{{$member->user_id}}",
+						"editable": false,
+						"last": false
+					},{
+						"component": "field",
+						"title": "비밀번호",
+						"name": "user_password",
+						"desc": "",
+						"type": "password",
+						"value": "",
+						"editable": true,
+						"last": false
+					},{
+						"component": "field",
+						"title": "비밀번호 확인",
+						"name": "user_password2",
+						"desc": "",
+						"type": "password",
+						"value": "",
+						"editable": true,
+						"last": false
+					},{
+						"component": "field",
+						"title": "비밀번호 해시",
+						"name": "hash_type",
+						"desc": "비밀번호 해시 종류를 선택하세요.<br/>(비밀번호를 변경하지 않고 변경할 경우 로그인이 불가능할 수 있습니다.)",
+						"type": "select",
+						"value": "{{$member->hash_type}}",
+						"values": [{
+							"label": "SHA256",
+							"value": "SHA256"
+						},{
+							"label": "SHA512",
+							"value": "SHA512"
+						},{
+							"label": "SHA1",
+							"value": "SHA1"
+						},{
+							"label": "MD5",
+							"value": "MD5"
+						},{
+							"label": "MYSQL_PASSWORD",
+							"value": "MYSQL_PASSWORD"
+						}],
+						"editable": true,
+						"last": false
+					},{
+						"component": "field",
+						"title": "이름",
+						"name": "user_name",
+						"desc": "",
+						"type": "text",
+						"value": "{{$member->user_name}}",
+						"editable": true,
+						"last": false
+					},{
+						"component": "field",
+						"title": "이메일",
+						"name": "user_email",
+						"desc": "",
+						"type": "text",
+						"value": "{{$member->user_email}}",
+						"editable": true,
+						"last": false
+					},{
+						"component": "field",
+						"title": "닉네임",
+						"name": "user_nickname",
+						"desc": "",
+						"type": "text",
+						"value": "{{$member->user_nickname}}",
+						"editable": true,
+						"last": false
+					},
+					{
+						"component": "field-group",
+						"child": [{
+							"component": "button",
+							"type": "submit",
+							"color": "primary",
+							"label": "저장",
+							"rl": {
+								"action": "save"
+							}
+						}],
+						"last": false
+					}]
+				}]
+			}]
+		}]
+	}]
+}]

@@ -1,0 +1,17 @@
+{
+	"appid": "teamast.eflix.uikit",
+	"license": "GPL v3",
+	"name": "UIKIT",
+	"version": "1.0",
+	"desc": "UIKIT assets 파일입니다.",
+	"site": "http://www.teamast.io/",
+	"author": [
+		{
+			"name": "LiXCode",
+			"email": "lixcode@teamast.io"
+		}
+	],
+	"deps": [
+		
+	]
+}

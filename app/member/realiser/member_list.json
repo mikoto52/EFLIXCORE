@@ -1,0 +1,59 @@
+[
+{
+	"component": "static",
+	"path": "./js/member_list.js"
+},
+{
+	"component": "pageheader",
+	"title": "회원 목록",
+	"desc": "회원 목록입니다.",
+	"ul": [
+		"<li><a href='{{getUrl('admin')}}'>관리자</a></li>",
+		"<li><span>회원</span></li>",
+		"<li class='active'><span>회원 목록</span></li>"
+	]
+},
+{
+	"component": "content",
+	"child": [{
+		"component": "row",
+		"child": [{
+			"component": "col",
+			"title": "{{htmlspecialchars($test)}}",
+			"size": [12, 12, 12],
+			"child": [{
+				"component": "fieldset",
+				"title": "회원 목록",
+				"hide": false,
+				"close": false,
+				"child": [{
+					"component": "datatable",
+					"seq": "user_srl",
+					"id": "member_list_grid", 
+					"ajax": "{{getUrl('admin', 'member', 'ajax', 'member_list')}}",
+					"buttons": [
+						{
+							"component": "button",
+							"type": "a",
+							"href": "#",
+							"color": "default",
+							"label": "<i class='far fa-edit'></i>",
+							"size": "small",
+							"rl": {
+								"action": "edit"
+							}
+						}
+					],
+					"columns": [
+						{"name": "user_id", "title": "아이디"},
+						{"name": "user_name", "title": "이름"},
+						{"name": "user_email", "title": "이메일 주소"},
+						{"name": "user_nickname", "title": "닉네임"},
+						{"name": "user_priv", "title": "권한"}
+					],
+					"records": {{json_encode($data)}}
+				}]
+			}]
+		}]
+	}]
+}]
