@@ -20,6 +20,10 @@ namespace Core {
 		public static function writeFile($file, $content) {
 			return FileHandler::open($file, 'w')->write($content);
 		}
+		
+		public static function appendFile($file, $content) {
+			return FileHandler::open($file, 'a+')->write($content);
+		}
 
 		public function read() {
 			if($this->fp == NULL) throw new \Exception("NullPointerException");

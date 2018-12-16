@@ -14,6 +14,10 @@ namespace Core {
 
 		public function __construct() {
 			$this->cacheStorage = \Core\Kernel::getStorageConfig('cache');
+			
+			$cacheDir = $this->cacheStorage . '/misc/';
+			if(!is_dir($cacheDir))
+				mkdir($cacheDir);
 		}
 
 		public function getTemplateCache($cacheKey, $mtime = 0) {

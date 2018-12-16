@@ -24,8 +24,9 @@ namespace Core {
 		public $panic_object = NULL;
 		public $is_cli = false;
 		public $appData = '';
-		public static $registeredMethod = array();
-		public static $shutdownFunc = array();
+		public static $registeredMethod = [];
+		public static $shutdownFunc = [];
+		public static $__ENV = [];
 		
 		/**
 		 * @brief	Call dynamiclly registered Kernel method
@@ -74,9 +75,11 @@ namespace Core {
 			return self::getInstance()->is_cli;
 		}
 		
-		public function Flush() {
+		public static function Flush() {
+			/**
+			 * Deprecated Functions
+			 */
 			Trigger::execute("Kernel.Flush.Before", array());
-
 			Trigger::execute("Kernel.Flush.After", array());
 		}
 		
@@ -90,7 +93,12 @@ namespace Core {
 			$this->appData = realpath(__DIR__ . '/../appdata/');
 			if(!$this->appData) 
 				throw new Exception("Unable to access appdata directory.");
-
+			
+			// Load Configuration
+			
+			// load db config
+			self::$dbConf = include_once(sprintf('%s/config/db.config.php', self::getPath('appdata')));
+			
 			// initialize DB
 			self::getDBConn();
 			
@@ -155,10 +163,7 @@ namespace Core {
 		}
 		
 		public function initDatabase() {
-			
-			// load db config
-			$dbconf = include_once(sprintf('%s/config/db.config.php', self::getPath('appdata')));
-			self::$dbConf = &$dbconf;
+			$dbconf = &self::$dbConf;
 			
 			if(!$dbconf['prefix']) {
 				$dbconf['prefix'] = 'vs_';
@@ -413,6 +418,8 @@ namespace Core {
 		    if($errno == E_NOTICE) return;
 		    
 			$message = '['.$typestr.'] '.$errstr.' in '.$errfile.' on line '.$errline;
+			// Insert to Log
+			Kernel::getLogger()->write($message, 'Runtime');
 			Kernel::getResponse()->addCoreError($message);
 		}
 
@@ -508,6 +515,31 @@ namespace Core {
 			mkdir($flag . 'cache/kernel');
 			mkdir($flag . 'app');
 			mkdir($flag . 'storage');
+		}
+		
+		/***
+		 * Version 0.4 Addon
+		 */
+		public static function getEnv($k) {
+			if($k == 'root') return _EFLIXROOT_;
+			if($k == 'path') return _EFLIXPATH_;
+			if($k == 'host') return _EFLIXHOST_;
+			if($k == 'debug') return _EFLIXDEBUG_;
+			
+			return self::$__ENV[$k];
+		}
+		
+		public static function setEnv($k, $v = null ) {
+			if($k == 'root') return;
+			if($k == 'path') return;
+			if($k == 'host') return;
+			if($k == 'debug') return;
+			
+			self::$__ENV[$k] = $v;	
+		}
+		
+		public static function getLogger() {
+			return Logger::getInstance();
 		}
 	}
 }

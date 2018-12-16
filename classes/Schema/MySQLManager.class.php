@@ -139,9 +139,10 @@ namespace Schema {
 
 			foreach($index as $idx) {
 				$query = 'ALTER TABLE [QT][table_name][QT]';
-				print_r($idx);
 				if($idx->type == 'PRIMARY')
 					$query .= 'ADD PRIMARY KEY ('.$idx->column.')';
+				IF($idx->type == 'UNIQUE')
+					$query .= 'ADD UNIQUE ('.$idx->column.')';
 				$query .= ';';
 				$queries[] = $this->buildQuery($query, array('table_name' => self::getTableName($table_name)));
 			}

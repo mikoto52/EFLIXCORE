@@ -37,6 +37,8 @@ class response {
 	}
 	
 	public function addCoreError($msg) {
+		// deprecated functions
+		return;
 		$self = self::getInstance();
 		$self->core_errors[] = $msg;
 	}

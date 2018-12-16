@@ -49,14 +49,14 @@ namespace Core{
 	
 		public function compile($template_file)
 		{
-			if(!preg_match("/(.stpl|.html|.tpl)/i", $template_file)) {
+			if(!preg_match("/\.([a-z0-9]+)/im", $template_file)) {
 				$template_file = sprintf("%s.%s", $template_file, $this->default_ext);
 			}
 			$this->template_file = $template_file;
 
 			$fullPath = sprintf("%s%s", $this->template_path, $this->template_file);
 			if(!is_file($fullPath))
-				throw new \Exceptions(sprintf("<br/><b>Sygrion Template Error</b>: Unable to compile template file '%s' (sygrion: no such file or directory)", $fullPath));
+				throw new \Exception(sprintf("<br/><b>Sygrion runtime error</b>: Unable to compile template file '%s' (sygrion: no such file or directory)", $fullPath));
 
 			// use CacheEngine
 			$oCacheEngine = \Core\CacheEngine::getInstance();
@@ -105,7 +105,6 @@ namespace Core{
 			$buff = $pre . $buff;
 			if($this->default_namespace != '')
 				$buff .= '<?php }';
-			// echo $buff;exit;
 
 			return eval($buff);
 		}
@@ -529,7 +528,7 @@ namespace Core{
 			$compiled = preg_replace_callback("/(@asset \"(.*)\"[\r+]?$|@asset \'(.*)\'[\r+]?$)/imsU", array($this, "__parse_asset"), $compiled);
 			
 			// compile included template
-			$compiled = preg_replace_callback("/(@include \"(.*)\"$|@include \'(.*)\'$)/imsU", array($this, "__parse_include"), $compiled);
+			$compiled = preg_replace_callback("/(@include \"(.*)\"[\r+]?$|@include \'(.*)\'[\r+]?$)/imsU", array($this, "__parse_include"), $compiled);
 			
 			// compile @use script
 			$compiled = preg_replace_callback("/(@use (.*)\\sas\\s(.*)$|@css \'(.*)\'$)/imsU", function($match) {
