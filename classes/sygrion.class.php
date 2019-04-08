@@ -65,11 +65,13 @@ namespace Core{
 			$cacheData = $oCacheEngine->getTemplateCache($cacheKey, $mtime);
 			if($cacheData) {
 				$buff = $cacheData->stpl;
-				foreach($cacheData->css as $v) 
-					$this->addCSS($v);
+				if(is_array($cacheData->css)) {
+					foreach($cacheData->css as $v) $this->addCSS($v);
+				}
 				
-				foreach($cacheData->js as $v) 
-					$this->addJS($v);
+				if(is_array($cacheData->css)) {
+					foreach($cacheData->js as $v) $this->addJS($v);
+				}
 			}
 			
 			// Template data not exists, parse & create cache

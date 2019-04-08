@@ -9,7 +9,11 @@ namespace Core {
 			$this->connection = new PDO(sprintf("sqlite:%s", $host));
 			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
-	
+		
+		public function query($str) {
+			return $this->connection->query($str);
+		}
+
 		public function prepare($str) {
 			$stmt = $this->connection->prepare($str);
 	

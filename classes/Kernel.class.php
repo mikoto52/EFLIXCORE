@@ -90,7 +90,7 @@ namespace Core {
 				$this->is_cli = true;
 			}
 
-			$this->appData = realpath(__DIR__ . '/../appdata/');
+			$this->appData = realpath(__DIR__ . '/../App_Data/');
 			if(!$this->appData) 
 				throw new Exception("Unable to access appdata directory.");
 			

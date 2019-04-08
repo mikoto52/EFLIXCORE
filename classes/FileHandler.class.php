@@ -39,5 +39,21 @@ namespace Core {
 			fclose($this->fp);
 			$this->fp = NULL;
 		}
+		
+		public static function scanDirectory($dir) {
+			try {
+				$dh = opendir($dir);
+			} catch(\Exception $e) {
+				throw new \Exception($e);
+			}
+			
+			$files = [];
+			while (false !== ($filename = readdir($dh))) {
+				if($filename == '.' || $filename == '..') continue;
+				$files[] = $filename;
+			}
+			
+			return $files;
+		}
 	}
 }

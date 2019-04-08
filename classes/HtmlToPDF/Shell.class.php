@@ -37,6 +37,7 @@ namespace HtmlToPDF {
 			$output = NULL;
 			exec($cmdLine . ' 2>&1', $output, $return_var);
 			$output = implode($output, "\n");
+			\Core\Logger::getInstance()->write($output, "HtmlToPDF");
 
 			if($return_var === 1) throw new HtmlToPDFException('Unable to execute command "' . htmlentities($cmdLine) . '"');
 
